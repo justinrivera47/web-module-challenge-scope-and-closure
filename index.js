@@ -28,8 +28,12 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+
+      The variable count in counter2 is a global variable. Variable count in counter1 is within a function.
+
   2. Which of the two uses a closure? How can you tell?
+
+  Counter 1 is the closure. Countermaker has afunction within a function and the inner function is pulling from the outter function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
@@ -62,9 +66,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * 2);
 }
+
+console.log(inning());
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -81,9 +87,20 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningCb, number){
+  let Home = 0;
+  let Away = 0;
+  for(let i = 0; i < number; i++){
+    Home = Home + inningCb();
+    Away = Away + inningCb();
+  }
+  return {
+    Home: Home,
+    Away: Away
+  }
 }
+
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
